@@ -17,8 +17,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 app.use("/css", express.static(path.join(__dirname, "public/css")));
 
+let articles = [
+  { title: "AI Art Article 1", content: "How to Prompt? Yeah well there are plenty of ways for good prompting. We will learn the basic of prompting here." },
+  { title: "AI Art Article 2", content: "How to Prompt? Yeah well there are plenty of ways for good prompting. We will learn the basic of prompting here." },
+];
+
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs", { articles, scrollTo: undefined });
 });
 
 app.get("/contact", (req, res) => {
@@ -31,11 +36,15 @@ app.get("/about", (req, res) => {
 
 app.post("/submit", (req, res) => {
   let postTitle = req.body.title;
-  let postContent = req.body.Content;
+  let postContent = req.body.content;
+
+  // Add the new article to the array
+  articles.unshift({ title: postTitle, content: postContent });
+
   console.log("Title:", postTitle);
   console.log("Content:", postContent);
 
-  res.redirect("/#article");
+  res.render("index.ejs", { articles, scrollTo: "article" });
 });
 // preparing soon app.post("submit" , { title and content}) maybe in an array? who knows?
 

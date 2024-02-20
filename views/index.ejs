@@ -62,24 +62,33 @@
         </p>
       </main>
 
-          <!-- Articles Content  -->
-   <section class="blog-content" id="article">
-      <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">AI Art Article 1</h1>
-        <p class="col-md-8 fs-4">How to Prompt? Yeah well there are plenty of ways for good prompting. We will learn the basic of prompting here.</p>
-      </div>
-    </div>
-        </section>
+      <!-- Fixing the auto scroll to the article with window.onload and scrollTo this -->
 
-           <section class="blog-content" id="article">
-      <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <% if (scrollTo && scrollTo === "article") { %>
+  <script>
+    window.onload = function () {
+      // Scroll to the specified element
+      var articleElement = document.getElementById("article");
+      if (articleElement) {
+        articleElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+  </script>
+<% } %>
+
+          <!-- Articles Content  -->
+
+      <section class="blog-content" id="article">
+  <% articles.forEach(article => { %>
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
       <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">AI Art Article 2</h1>
-        <p class="col-md-8 fs-4">How to Prompt? Yeah well there are plenty of ways for good prompting. We will learn the basic of prompting here.</p>
+        <h1 class="display-5 fw-bold"><%= article.title %></h1>
+        <p class="col-md-8 fs-4"><%= article.content %></p>
       </div>
     </div>
-        </section>
+  <% }) %>
+</section>
+
  <!-- CREATE POST BUTTON -->
          <a href="#blog-form"><button class="create-post btn btn-primary btn-lg" type="button">Create Post </button></a>
          <!-- CREATE POST FORM -->
