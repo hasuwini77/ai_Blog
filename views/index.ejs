@@ -3,11 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" defer crossorigin="anonymous"></script>
+
     <title>The AI Blog</title>
   </head>
   <body>
-    <header>
-      <h1>Learn more about AI Generations</h1>
-    </header>
+    <!-- Drop down menu 1-->
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (dark)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark" aria-pressed="true">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Cover Page -->
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h1 class="float-md-start mb-0">The AI blog</h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link fw-bold py-1 px-10 active" aria-current="page" href="#">Home</a>
+            <a class="nav-link fw-bold py-1 px-10" href="./about.ejs">About</a>
+            <a class="nav-link fw-bold py-1 px-10" href="./contact.ejs">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="content px-3">
+        <p class="lead">Learn more about ai generative image/video generations.</p>
+        <p class="lead">
+          <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
+        </p>
+      </main>
+
+          <!-- Articles Content  -->
+   <section class="blog-content">
+      <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">AI Art Article 1</h1>
+        <p class="col-md-8 fs-4">How to Prompt? Yeah well there are plenty of ways for good prompting. We will learn the basic of prompting here.</p>
+      </div>
+    </div>
+        </section>
+
+           <section class="blog-content">
+      <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">AI Art Article 2</h1>
+        <p class="col-md-8 fs-4">How to Prompt? Yeah well there are plenty of ways for good prompting. We will learn the basic of prompting here.</p>
+      </div>
+    </div>
+        </section>
+ <!-- CREATE POST BUTTON -->
+         <a href="#blog-form"><button class="create-post btn btn-primary btn-lg" type="button">Create Post </button></a>
+         <!-- CREATE POST FORM -->
+         <section id="blog-form">
+ <div class="container mt-5">
+    <h2>Submit an Article</h2>
+    <form action="/submit" method="post">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title of Article</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content of the Article</label>
+        <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+         </section>
+
+        <footer class="mt-auto text-white-50">
+        <p>Designed by <a href="https://devdwin.com/" class="text-white">devdwin</a>.</p>
+      </footer>
+    </div>
   </body>
 </html>
