@@ -29,6 +29,16 @@ app.get("/about", (req, res) => {
   res.render("about.ejs");
 });
 
+app.post("/submit", (req, res) => {
+  let postTitle = req.body.title;
+  let postContent = req.body.Content;
+  console.log("Title:", postTitle);
+  console.log("Content:", postContent);
+
+  res.redirect("/#article");
+});
+// preparing soon app.post("submit" , { title and content}) maybe in an array? who knows?
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
