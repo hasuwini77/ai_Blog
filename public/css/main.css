@@ -4,7 +4,6 @@
 
 .cover-container {
   background-color: rgb(222, 171, 108);
-  height: 100vh;
 }
 
 p,
@@ -13,8 +12,17 @@ p,
   font-weight: 400;
   font-size: 1.5rem;
 }
+.nav-link,
+nav {
+  font-family: "Courier New", Courier, monospace;
+  color: black;
+  transition: all 0.5s;
+}
+.nav-link:hover {
+  color: white;
+}
 .content {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
