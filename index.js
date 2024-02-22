@@ -3,6 +3,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import methodOverride from "method-override";
 
 const app = express();
 const port = 3000;
@@ -12,6 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 // Serve static files from the public directory and from Boostrap node modules
 app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
@@ -45,8 +47,20 @@ app.post("/submit", (req, res) => {
   console.log("Content:", postContent);
 
   res.render("index.ejs", { articles, scrollTo: "article" });
+}); 
+
+app.post("/delete/:index", (req, res) => {
+  const index = req.params.index;
+
+  if (index >= 0 && index < articles.length) {
+    articles.splice(index, 1);
+       res.render("index.ejs", { articles, scrollTo: "article" });
+
+  } else {
+    res.sendStatus(404);
+  }
 });
-// preparing soon app.post("submit" , { title and content}) maybe in an array? who knows?
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

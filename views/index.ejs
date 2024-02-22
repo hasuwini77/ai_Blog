@@ -76,18 +76,32 @@
   </script>
 <% } %>
 
-          <!-- Articles Content  -->
-
-      <section class="blog-content" id="article">
-  <% articles.forEach(article => { %>
+<!-- Articles Content  -->
+<section class="blog-content" id="article">
+  <% articles.forEach((article, index) => { %>
     <div class="p-5 mb-4 bg-body-tertiary rounded-3">
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold"><%= article.title %></h1>
         <p class="col-md-8 fs-4"><%= article.content %></p>
+      <form action="/delete/<%= index %>" method="post" id="<%= `deleteForm${index}` %>">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" class="btn delete btn-danger">Delete</button>
+</form>
+
+        <!-- Add Edit button and link to an edit page or modal if you want to implement edit functionality -->
+        <button type="button" class="btn edit btn-warning" onclick="deleteArticle('<%= index %>')">Edit</button>
       </div>
     </div>
   <% }) %>
 </section>
+
+<!-- Add this script at the end of the file -->
+<script>
+  function deleteArticle(index) {
+    // You can perform additional confirmation or handling here if needed
+    document.getElementById(`deleteForm${index}`).submit();
+  }
+</script>
 
  <!-- CREATE POST BUTTON -->
          <a href="#blog-form"><button class="create-post btn btn-primary btn-lg" type="button">Create Post </button></a>
