@@ -76,24 +76,55 @@
   </script>
 <% } %>
 
-<!-- Articles Content  -->
+<!-- Articles Content -->
 <section class="blog-content" id="article">
   <% articles.forEach((article, index) => { %>
     <div class="p-5 mb-4 bg-body-tertiary rounded-3">
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold"><%= article.title %></h1>
         <p class="col-md-8 fs-4"><%= article.content %></p>
-      <form action="/delete/<%= index %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <button type="submit" class="btn delete btn-danger">Delete</button>
-</form>
+        
+        <!-- Delete form -->
+        <form action="/delete/<%= index %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="btn delete btn-danger">Delete</button>
+        </form>
 
-        <!-- Add Edit button -->
-        <button type="button" class="btn edit btn-warning">Edit</button>
+        <!-- Edit button -->
+        <button type="button" class="btn edit btn-warning" data-bs-toggle="modal" data-bs-target="#editModal<%= index %>">Edit</button>
       </div>
     </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal<%= index %>" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Article</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Edit form -->
+            <form action="/edit/<%= index %>" method="post">
+              <input type="hidden" name="_method" value="edit">
+              <div class="mb-3">
+                <label for="editTitle" class="form-label">New Title</label>
+                <input type="text" class="form-control" id="editTitle" name="editTitle" value="<%= article.title %>" required>
+              </div>
+              <div class="mb-3">
+                <label for="editContent" class="form-label">New Content</label>
+                <textarea class="form-control" id="editContent" name="editContent" rows="4" required><%= article.content %></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <% }) %>
 </section>
+
 
 
  <!-- CREATE POST BUTTON -->

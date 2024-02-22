@@ -49,6 +49,7 @@ app.post("/submit", (req, res) => {
   res.render("index.ejs", { articles, scrollTo: "article" });
 }); 
 
+// the : here is interpreted as a parameter in Express
 app.post("/delete/:index", (req, res) => {
   const index = req.params.index;
 
@@ -60,6 +61,24 @@ app.post("/delete/:index", (req, res) => {
     res.sendStatus(404);
   }
 });
+
+app.post("/edit/:index", (req, res) => {
+  const index = req.params.index;
+  const newTitle = req.body.editTitle;
+  const newContent = req.body.editContent;
+
+  if (index >= 0 && index < articles.length) {
+    // Update the article at the specified index with new values
+    articles[index].title = newTitle;
+    articles[index].content = newContent;
+
+    res.render("index.ejs", { articles, scrollTo: "article" });
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+
 
 
 app.listen(port, () => {
